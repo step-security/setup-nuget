@@ -31,8 +31,8 @@ for how to configure secrets on your repository.
 
 ```yaml
 steps:
-- uses: actions/checkout@master
-- uses: step-security/setup-nuget@v3
+- uses: actions/checkout@v6
+- uses: step-security/setup-nuget@v4
   with:
     nuget-api-key: ${{ secrets.NuGetAPIKey }}
     nuget-version: '5.x'
@@ -53,9 +53,9 @@ jobs:
         nuget: [latest, preview, 4.x, 5.3.1]
     name: NuGet@${{ matrix.nuget }} sample
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v6
       - name: Setup NuGet.exe
-        uses: step-security/setup-nuget@v3
+        uses: step-security/setup-nuget@v4
         with:
           nuget-version: ${{ matrix.nuget }}
       - run: nuget restore MyProject.sln
@@ -72,8 +72,8 @@ Note: For this example, you'll need to enable [repeatable builds](https://devblo
 
 ```yaml
 steps:
-- uses: actions/checkout@master
-- uses: step-security/setup-nuget@v3
+- uses: actions/checkout@v6
+- uses: step-security/setup-nuget@v4
   with:
     nuget-version: '5.x'
 - uses: actions/cache@v4

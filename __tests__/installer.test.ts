@@ -25,8 +25,7 @@ const TOOLS_JSON = {
     },
     {
       version: '5.3.0-preview3',
-      url:
-        'https://dist.nuget.org/win-x86-commandline/v5.3.0-preview3/nuget.exe',
+      url: 'https://dist.nuget.org/win-x86-commandline/v5.3.0-preview3/nuget.exe',
       stage: 'EarlyAccessPreview',
       uploaded: '2019-09-04T17:00:00.0000000Z'
     },
@@ -67,16 +66,10 @@ describe('installer tests', () => {
 
   test('installs nuget.exe', async () => {
     const srv = nock(HOST);
-    srv
-      .get(PATH)
-      .once()
-      .reply(200, TOOLS_JSON);
+    srv.get(PATH).once().reply(200, TOOLS_JSON);
     const requestUrl = new URL(TOOLS_JSON['nuget.exe'][0].url);
     const p = `${requestUrl.pathname}${requestUrl.search}`;
-    srv
-      .get(p)
-      .once()
-      .reply(200, 'abcd');
+    srv.get(p).once().reply(200, 'abcd');
     await installer();
     srv.done();
     const cacheDir = tc.find('nuget.exe', '5.3.1');

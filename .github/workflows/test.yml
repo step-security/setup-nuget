@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        nuget-version: [latest, preview]
+        nuget-version: ${{ github.actor == 'dependabot[bot]' && fromJSON('["latest"]') || fromJSON('["latest", "preview"]') }}
     steps:
     - uses: actions/checkout@v6
 

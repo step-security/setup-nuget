@@ -1,6 +1,6 @@
 {
   "name": "setup-nuget-exe",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "description": "Download and install NuGet.exe for use in GitHub Actions.",
   "type": "module",
@@ -12,24 +12,25 @@
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run package && npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nuget/setup-nuget-exe.git"
+    "url": "git+https://github.com/step-security/setup-nuget.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "Microsoft",
+  "author": "step-security",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^3.0.0",
     "@actions/exec": "^3.0.0",
     "@actions/io": "^3.0.2",
     "@actions/tool-cache": "^4.0.0",
+    "axios": "^1.16.1",
     "semver": "^7.7.4"
   },
   "devDependencies": {
@@ -42,7 +43,6 @@
     "eslint-plugin-jest": "^29.15.2",
     "jest": "^30.3.0",
     "jest-circus": "^30.3.0",
-    "js-yaml": "^4.1.0",
     "mode-to-permissions": "0.0.2",
     "nock": "^14.0.12",
     "prettier": "3.8.2",

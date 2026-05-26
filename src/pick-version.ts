@@ -24,14 +24,16 @@ export default async function pickVersion(spec: string): Promise<Tool> {
   let range = semver.validRange(spec, true);
   let selected;
   if (range) {
-    selected = versions.find(v => semver.satisfies(v.version, (range as string), true));
+    selected = versions.find(v =>
+      semver.satisfies(v.version, range as string, true)
+    );
   } else {
     let stage =
       spec == 'latest'
         ? Stage.latest
         : spec == 'preview'
-        ? Stage.preview
-        : null;
+          ? Stage.preview
+          : null;
     if (!stage) {
       throw new Error(
         `Invalid release label: '${spec}'. Valid labels are 'latest' and 'preview'.`
@@ -46,9 +48,9 @@ export default async function pickVersion(spec: string): Promise<Tool> {
 }
 
 async function fetchVersions(): Promise<Tool[]> {
-  const tools = (await getNuGetToolsJsonWithRetries('https://dist.nuget.org/tools.json'))[
-    'nuget.exe'
-  ];
+  const tools = (
+    await getNuGetToolsJsonWithRetries('https://dist.nuget.org/tools.json')
+  )['nuget.exe'];
 
   return tools.map(v => {
     return {
@@ -58,7 +60,9 @@ async function fetchVersions(): Promise<Tool[]> {
   });
 }
 
-async function getNuGetToolsJsonWithRetries(urlString: string): Promise<NuGetTools> {
+async function getNuGetToolsJsonWithRetries(
+  urlString: string
+): Promise<NuGetTools> {
   let lastError: unknown;
 
   for (let attempt = 0; attempt < 4; attempt++) {
@@ -76,9 +80,15 @@ function getNuGetToolsJson(urlString: string): Promise<NuGetTools> {
   return new Promise((resolve, reject) => {
     const url = new URL(urlString);
     const request = https.get(url, response => {
-      if (response.statusCode === undefined || response.statusCode < 200 || response.statusCode >= 300) {
+      if (
+        response.statusCode === undefined ||
+        response.statusCode < 200 ||
+        response.statusCode >= 300
+      ) {
         response.resume();
-        reject(new Error(`Failed to fetch NuGet tools metadata from ${urlString}.`));
+        reject(
+          new Error(`Failed to fetch NuGet tools metadata from ${urlString}.`)
+        );
         return;
       }
 
@@ -92,7 +102,9 @@ function getNuGetToolsJson(urlString: string): Promise<NuGetTools> {
           const parsed = JSON.parse(body) as NuGetTools;
           resolve(parsed || {'nuget.exe': []});
         } catch {
-          reject(new Error(`Failed to parse NuGet tools metadata from ${urlString}.`));
+          reject(
+            new Error(`Failed to parse NuGet tools metadata from ${urlString}.`)
+          );
         }
       });
     });

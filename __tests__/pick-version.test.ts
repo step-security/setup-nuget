@@ -19,8 +19,7 @@ const TOOLS_JSON = {
     },
     {
       version: '5.3.0-preview3',
-      url:
-        'https://dist.nuget.org/win-x86-commandline/v5.3.0-preview3/nuget.exe',
+      url: 'https://dist.nuget.org/win-x86-commandline/v5.3.0-preview3/nuget.exe',
       stage: 'EarlyAccessPreview',
       uploaded: '2019-09-04T17:00:00.0000000Z'
     },
@@ -67,10 +66,7 @@ test('picks a version based on semver range', async () => {
 
 test('picks a version based on stage', async () => {
   const srv = nock(HOST);
-  srv
-    .get(PATH)
-    .times(2)
-    .reply(200, TOOLS_JSON);
+  srv.get(PATH).times(2).reply(200, TOOLS_JSON);
   let tool = await pickVersion('latest');
   expect(tool).toStrictEqual({
     version: '5.3.1',
