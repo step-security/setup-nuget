@@ -9,7 +9,7 @@ on:
       script:
         description: "Build script to run"
         required: false
-        default: "npm run package"
+        default: "npm run all"
       node_version:
         description: "Node.js version to use"
         required: false
@@ -28,5 +28,5 @@ jobs:
     uses: step-security/reusable-workflows/.github/workflows/actions_release.yaml@v1
     with:
       tag: "${{ github.event.inputs.tag }}"
-      script: ${{ inputs.script || 'npm run package' }}
+      script: ${{ inputs.script || 'npm run all' }}
       node_version: ${{ inputs.node_version || '24' }}
