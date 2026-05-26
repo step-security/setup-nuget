@@ -1,5 +1,5 @@
 name: 'Setup NuGet.exe for use with actions'
-description: 'Official NuGet.exe setup action that supports cross-platform installation of specific NuGet.exe versions.'
+description: 'NuGet.exe setup action that supports cross-platform installation of specific NuGet.exe versions.'
 author: 'step-security'
 inputs:
   nuget-version:

@@ -8,7 +8,7 @@ macOS and linux, without having to prefix it with `mono`.
 
 NuGet functionality also gets delivered with Visual Studio, msbuild and dotnet SDK. You should consider using the
 official [`setup-dotnet`](https://github.com/actions/setup-dotnet) or
-[one of the `msbuild` actions](https://github.com/marketplace?utf8=%E2%9C%93&query=msbuild).
+[`setup-msbuild`](https://github.com/step-security/setup-msbuild).
 
 # Usage
 
