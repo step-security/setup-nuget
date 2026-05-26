@@ -1,0 +1,23 @@
+name: "Test setup-nuget-exe"
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        nuget-version: [latest, preview]
+    steps:
+    - uses: actions/checkout@v6
+
+    - run: npm ci
+    - run: npm run build
+    - run: npm test
+    - uses: ./
+      with:
+        nuget-version: ${{ matrix.nuget-version }}
+        nuget-api-key: ${{ secrets.NuGetAPIKey }}
+    - run: nuget
