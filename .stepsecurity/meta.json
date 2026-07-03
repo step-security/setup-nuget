@@ -1,0 +1,18 @@
+{
+   "schema_version": "1",
+   "onboarding_type": "copied",
+   "archived": false,
+   "maintained_action_name": "step-security/setup-nuget",
+   "upstream_full_repo_name": "nuget/setup-nuget",
+   "action_type": "node",
+   "last_release": {
+     "tag_name": "v4.0.0",
+     "created_at": "2026-05-26T13:04:20Z",
+     "published_at": "2026-05-26T15:58:06Z"
+   },
+   "sync": {
+     "ignore_presets": [
+       "defaults_v1"
+     ]
+   }
+ }
